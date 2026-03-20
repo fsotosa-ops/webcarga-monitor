@@ -87,10 +87,10 @@
             </div>
             
             <nav class="flex-1 px-3 space-y-1.5">
-                <button onclick="navigate('dashboard')" id="nav-dashboard" class="w-full text-left px-4 py-2.5 bg-linkedin text-white font-bold rounded-lg text-sm transition shadow-md">
+                <button onclick="navigate('dashboard')" id="nav-dashboard" class="w-full text-left px-4 py-2.5 bg-linkedin text-white font-bold rounded-lg text-sm transition shadow-md flex items-center">
                     Monitor y Diario 2.0
                 </button>
-                <button onclick="navigate('transporters')" id="nav-transporters" class="w-full text-left px-4 py-2.5 hover:bg-slate-800 rounded-lg text-sm font-medium transition">
+                <button onclick="navigate('transporters')" id="nav-transporters" class="w-full text-left px-4 py-2.5 hover:bg-slate-800 rounded-lg text-sm font-medium transition flex items-center">
                     Directorio de Empresas
                 </button>
             </nav>
@@ -188,11 +188,12 @@
                                 <th class="p-3 md:p-4 font-bold w-24">Fecha</th>
                                 <th class="p-3 md:p-4 font-bold w-40">ID / Tracto</th>
                                 <th class="p-3 md:p-4 font-bold">Cliente / Local</th>
-                                <th class="p-3 md:p-4 font-bold w-32">Estado</th>
+                                <th class="p-3 md:p-4 font-bold w-36">Estado</th>
                                 <th class="p-3 md:p-4 font-bold text-right w-24">Acción</th>
                             </tr>
                         </thead>
                         <tbody class="text-sm">
+                            
                             <tr class="row-vivo border-b border-gray-100 hover:bg-linkedin-soft cursor-pointer transition" onclick="toggleSlideOver('vivo', 'TRP-001')">
                                 <td class="p-3 md:p-4 text-xs font-bold text-linkedin">
                                     HOY<br>
@@ -214,11 +215,71 @@
                                 </td>
                             </tr>
 
-                            <tr class="row-historial hidden border-b border-gray-100 hover:bg-gray-50 cursor-pointer transition opacity-80" onclick="toggleSlideOver('historial', 'TRP-899')">
-                                <td class="p-3 md:p-4 text-xs text-gray-500 font-mono">
-                                    15-03<br>
-                                    06:30
+                            <tr class="row-vivo border-b border-gray-100 hover:bg-linkedin-soft cursor-pointer transition" onclick="toggleSlideOver('vivo', 'TRP-002')">
+                                <td class="p-3 md:p-4 text-xs font-bold text-linkedin">
+                                    HOY<br>
+                                    <span class="text-gray-400 font-medium">09:15</span>
                                 </td>
+                                <td class="p-3 md:p-4">
+                                    <p class="font-bold text-slate-800 text-xs md:text-sm">TRP-002</p>
+                                    <span class="text-[9px] md:text-[10px] font-mono bg-gray-100 border border-gray-200 px-1.5 py-0.5 rounded text-gray-600 mt-1 inline-block">HHTY-22</span>
+                                </td>
+                                <td class="p-3 md:p-4 text-xs">
+                                    <span class="font-bold text-slate-800">Tottus</span><br>
+                                    <span class="text-gray-600 truncate block max-w-[120px] md:max-w-none">Tottus Nataniel, Tottus Centro</span>
+                                </td>
+                                <td class="p-3 md:p-4">
+                                    <span class="px-2 md:px-2.5 py-1 bg-green-100 text-green-800 rounded text-[9px] md:text-[10px] font-bold border border-green-200 shadow-sm">EN RUTA</span>
+                                </td>
+                                <td class="p-3 md:p-4 text-right">
+                                    <button class="text-linkedin font-bold text-xs bg-linkedin-soft px-2 md:px-3 py-1.5 rounded-md hover:bg-linkedin-light border border-linkedin/20 transition">Gestionar</button>
+                                </td>
+                            </tr>
+
+                            <tr class="row-vivo border-b border-red-100 bg-red-50 hover:bg-red-100 cursor-pointer transition" onclick="toggleSlideOver('vivo', 'TRP-003')">
+                                <td class="p-3 md:p-4 text-xs font-bold text-red-600">
+                                    HOY<br>
+                                    <span class="text-red-400 font-medium">10:30</span>
+                                </td>
+                                <td class="p-3 md:p-4">
+                                    <p class="font-bold text-slate-800 text-xs md:text-sm">TRP-003</p>
+                                    <span class="text-[9px] md:text-[10px] font-mono bg-white border border-red-200 px-1.5 py-0.5 rounded text-red-600 mt-1 inline-block">LLPM-55</span>
+                                </td>
+                                <td class="p-3 md:p-4 text-xs">
+                                    <span class="font-bold text-slate-800">Sodimac</span><br>
+                                    <span class="text-red-500 font-medium truncate block max-w-[120px] md:max-w-none">Ruta 5 Sur Km 20</span>
+                                </td>
+                                <td class="p-3 md:p-4">
+                                    <span class="px-2 md:px-2.5 py-1 bg-red-100 text-red-800 rounded text-[9px] md:text-[10px] font-bold border border-red-200 shadow-sm">EN PANA</span>
+                                </td>
+                                <td class="p-3 md:p-4 text-right">
+                                    <button class="text-red-700 font-bold text-xs bg-white px-2 md:px-3 py-1.5 rounded-md hover:bg-red-50 border border-red-200 transition">Gestionar</button>
+                                </td>
+                            </tr>
+
+                            <tr class="row-vivo border-b border-gray-100 hover:bg-linkedin-soft cursor-pointer transition" onclick="toggleSlideOver('vivo', 'TRP-004')">
+                                <td class="p-3 md:p-4 text-xs font-bold text-linkedin">
+                                    HOY<br>
+                                    <span class="text-gray-400 font-medium">11:15</span>
+                                </td>
+                                <td class="p-3 md:p-4">
+                                    <p class="font-bold text-slate-800 text-xs md:text-sm">TRP-004</p>
+                                    <span class="text-[9px] md:text-[10px] font-mono bg-gray-100 border border-gray-200 px-1.5 py-0.5 rounded text-gray-600 mt-1 inline-block">RTX-99</span>
+                                </td>
+                                <td class="p-3 md:p-4 text-xs">
+                                    <span class="font-bold text-slate-800">Walmart</span><br>
+                                    <span class="text-gray-600 truncate block max-w-[120px] md:max-w-none">Retornando a CD Lo Aguirre</span>
+                                </td>
+                                <td class="p-3 md:p-4">
+                                    <span class="px-2 md:px-2.5 py-1 bg-yellow-100 text-yellow-800 rounded text-[9px] md:text-[10px] font-bold border border-yellow-200 shadow-sm">RETORNANDO</span>
+                                </td>
+                                <td class="p-3 md:p-4 text-right">
+                                    <button class="text-linkedin font-bold text-xs bg-linkedin-soft px-2 md:px-3 py-1.5 rounded-md hover:bg-linkedin-light border border-linkedin/20 transition">Gestionar</button>
+                                </td>
+                            </tr>
+
+                            <tr class="row-historial hidden border-b border-gray-100 hover:bg-gray-50 cursor-pointer transition opacity-80" onclick="toggleSlideOver('historial', 'TRP-899')">
+                                <td class="p-3 md:p-4 text-xs text-gray-500 font-mono">15-03<br>06:30</td>
                                 <td class="p-3 md:p-4">
                                     <p class="font-bold text-slate-800 text-xs md:text-sm">TRP-899</p>
                                     <span class="text-[9px] md:text-[10px] font-mono bg-gray-100 border border-gray-200 px-1.5 py-0.5 rounded text-gray-600 mt-1 inline-block">LLPM-55</span>
@@ -234,13 +295,71 @@
                                     <button class="text-gray-500 font-bold text-xs hover:text-gray-800 underline transition">Auditar</button>
                                 </td>
                             </tr>
+
+                            <tr class="row-historial hidden border-b border-gray-100 hover:bg-gray-50 cursor-pointer transition opacity-80" onclick="toggleSlideOver('historial', 'TRP-850')">
+                                <td class="p-3 md:p-4 text-xs text-gray-500 font-mono">12-03<br>14:20</td>
+                                <td class="p-3 md:p-4">
+                                    <p class="font-bold text-slate-800 text-xs md:text-sm">TRP-850</p>
+                                    <span class="text-[9px] md:text-[10px] font-mono bg-gray-100 border border-gray-200 px-1.5 py-0.5 rounded text-gray-600 mt-1 inline-block">RTX-99</span>
+                                </td>
+                                <td class="p-3 md:p-4 text-xs">
+                                    <span class="font-bold text-slate-800">Falabella</span><br>
+                                    <span class="text-gray-600 truncate block max-w-[120px] md:max-w-none">Falabella Lyon</span>
+                                </td>
+                                <td class="p-3 md:p-4">
+                                    <span class="px-2 md:px-2.5 py-1 bg-gray-100 text-gray-600 rounded text-[9px] md:text-[10px] font-bold border border-gray-200 shadow-sm">COMPLETADO</span>
+                                </td>
+                                <td class="p-3 md:p-4 text-right">
+                                    <button class="text-gray-500 font-bold text-xs hover:text-gray-800 underline transition">Auditar</button>
+                                </td>
+                            </tr>
+
+                            <tr class="row-historial hidden border-b border-gray-100 hover:bg-red-50/50 cursor-pointer transition opacity-80" onclick="toggleSlideOver('historial', 'TRP-812')">
+                                <td class="p-3 md:p-4 text-xs text-gray-500 font-mono">08-03<br>08:15</td>
+                                <td class="p-3 md:p-4">
+                                    <p class="font-bold text-slate-800 text-xs md:text-sm">TRP-812</p>
+                                    <span class="text-[9px] md:text-[10px] font-mono bg-gray-100 border border-gray-200 px-1.5 py-0.5 rounded text-gray-600 mt-1 inline-block">KBCW-89</span>
+                                </td>
+                                <td class="p-3 md:p-4 text-xs">
+                                    <span class="font-bold text-slate-800">Sodimac</span><br>
+                                    <span class="text-gray-600 truncate block max-w-[120px] md:max-w-none">Sodimac Cerrillos</span>
+                                </td>
+                                <td class="p-3 md:p-4">
+                                    <span class="px-2 md:px-2.5 py-1 bg-red-100 text-red-700 rounded text-[9px] md:text-[10px] font-bold border border-red-200 shadow-sm">CANCELADO</span>
+                                </td>
+                                <td class="p-3 md:p-4 text-right">
+                                    <button class="text-gray-500 font-bold text-xs hover:text-gray-800 underline transition">Auditar</button>
+                                </td>
+                            </tr>
+
+                            <tr class="row-historial hidden border-b border-gray-100 hover:bg-gray-50 cursor-pointer transition opacity-80" onclick="toggleSlideOver('historial', 'TRP-790')">
+                                <td class="p-3 md:p-4 text-xs text-gray-500 font-mono">01-03<br>19:45</td>
+                                <td class="p-3 md:p-4">
+                                    <p class="font-bold text-slate-800 text-xs md:text-sm">TRP-790</p>
+                                    <span class="text-[9px] md:text-[10px] font-mono bg-gray-100 border border-gray-200 px-1.5 py-0.5 rounded text-gray-600 mt-1 inline-block">HHTY-22</span>
+                                </td>
+                                <td class="p-3 md:p-4 text-xs">
+                                    <span class="font-bold text-slate-800">Walmart</span><br>
+                                    <span class="text-gray-600 truncate block max-w-[120px] md:max-w-none">Walmart Pudahuel</span>
+                                </td>
+                                <td class="p-3 md:p-4">
+                                    <span class="px-2 md:px-2.5 py-1 bg-gray-100 text-gray-600 rounded text-[9px] md:text-[10px] font-bold border border-gray-200 shadow-sm">COMPLETADO</span>
+                                </td>
+                                <td class="p-3 md:p-4 text-right">
+                                    <button class="text-gray-500 font-bold text-xs hover:text-gray-800 underline transition">Auditar</button>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
 
-            <div id="page-transporters" class="hidden p-4 md:p-6 flex-1 overflow-auto space-y-6">
+            <div id="page-transporters" class="hidden p-4 md:p-6 flex-1 overflow-auto space-y-10">
                 
+                <div class="mb-4">
+                    <h3 class="text-lg font-bold text-gray-700 uppercase tracking-wide border-b border-gray-200 pb-2">Empresas Registradas (2)</h3>
+                </div>
+
                 <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4 md:p-6">
                     
                     <div class="flex flex-col md:flex-row md:justify-between md:items-center border-b border-gray-100 pb-4 md:pb-5 mb-5 space-y-4 md:space-y-0">
@@ -261,17 +380,17 @@
                         <div class="border border-gray-200 rounded-xl overflow-hidden flex flex-col h-auto md:h-[700px] shadow-sm bg-white">
                             <div class="bg-gray-50 p-4 md:p-5 border-b border-gray-200 flex justify-between items-center">
                                 <div>
-                                    <h4 class="font-bold text-slate-800 text-base md:text-lg">Conductores Asociados</h4>
+                                    <h4 class="font-bold text-slate-800 text-base md:text-lg">Conductores (2)</h4>
                                 </div>
                                 <button onclick="openModal('modal-conductor')" class="text-xs bg-linkedin hover:bg-linkedin-hover text-white font-bold px-3 md:px-4 py-2 rounded-lg shadow-md transition">
-                                    + Nuevo Conductor
+                                    + Nuevo
                                 </button>
                             </div>
                             
                             <div class="p-4 md:p-5 overflow-y-auto flex-1 bg-gray-50/50 space-y-4">
-                                <div class="bg-white border border-gray-200 rounded-xl p-4 md:p-5 shadow-sm">
-                                    
-                                    <div class="flex items-center justify-between border-b border-gray-100 pb-3 md:pb-4 mb-4">
+                                
+                                <div class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
+                                    <div class="flex items-center justify-between border-b border-gray-100 pb-3 mb-3">
                                         <div class="flex items-center">
                                             <div class="w-10 h-10 md:w-12 md:h-12 bg-gray-200 rounded-full bg-cover mr-3 md:mr-4 border border-gray-200 shrink-0" style="background-image: url('https://i.pravatar.cc/150?img=68');"></div>
                                             <div>
@@ -281,69 +400,70 @@
                                         </div>
                                     </div>
                                     
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 mb-5 text-xs text-gray-700">
-                                        <div class="md:col-span-2">
-                                            <span class="text-gray-400 block text-[9px] uppercase font-bold mb-0.5">Dirección</span>
-                                            Pasaje Los Aromos 123, Santiago
-                                        </div>
-                                        <div>
-                                            <span class="text-gray-400 block text-[9px] uppercase font-bold mb-0.5">Contacto Emergencia</span>
-                                            María González
-                                        </div>
-                                        <div>
-                                            <span class="text-gray-400 block text-[9px] uppercase font-bold mb-0.5">Teléfono Emergencia</span>
-                                            +56 9 8765 4321
-                                        </div>
-                                    </div>
-
-                                    <div class="bg-linkedin-soft p-3 md:p-4 rounded-xl border border-linkedin/20 space-y-3 md:space-y-4">
-                                        <p class="text-[9px] md:text-[10px] font-black text-linkedin-hover uppercase border-b border-linkedin/20 pb-1.5 md:pb-2">Validación y Evidencia Documental</p>
+                                    <div class="bg-linkedin-soft p-3 md:p-4 rounded-xl border border-linkedin/20 space-y-3">
+                                        <p class="text-[9px] md:text-[10px] font-black text-linkedin-hover uppercase border-b border-linkedin/20 pb-1.5">Evidencia Documental</p>
                                         
                                         <div class="flex flex-col gap-1.5">
                                             <div class="flex justify-between items-center text-[10px] md:text-xs">
                                                 <span class="font-bold text-gray-700">Examen Médico</span>
-                                                <input type="date" value="2026-12-01" class="border border-gray-300 rounded-md px-1 md:px-2 py-1 text-[10px] md:text-[11px] font-mono text-gray-700 bg-white w-24 md:w-auto">
+                                                <span class="text-[10px] font-mono bg-green-100 text-green-800 px-2 py-0.5 rounded border border-green-200">Al día</span>
                                             </div>
-                                            <input type="file" class="block w-full text-[9px] md:text-[10px] text-gray-500 file:mr-2 md:file:mr-3 file:py-1 file:px-2 md:file:px-3 file:rounded-md file:border-0 file:text-[9px] md:file:text-xs file:font-bold file:bg-linkedin-light file:text-linkedin-hover hover:file:bg-linkedin/20 cursor-pointer bg-white border border-gray-200 rounded-md transition">
                                         </div>
 
-                                        <div class="flex flex-col gap-1.5 border-t border-gray-200 pt-3">
-                                            <div class="flex justify-between items-center text-[10px] md:text-xs">
-                                                <span class="font-bold text-gray-700">Cert. Antecedentes</span>
-                                                <input type="date" value="2026-08-15" class="border border-gray-300 rounded-md px-1 md:px-2 py-1 text-[10px] md:text-[11px] font-mono text-gray-700 bg-white w-24 md:w-auto">
-                                            </div>
-                                            <input type="file" class="block w-full text-[9px] md:text-[10px] text-gray-500 file:mr-2 md:file:mr-3 file:py-1 file:px-2 md:file:px-3 file:rounded-md file:border-0 file:text-[9px] md:file:text-xs file:font-bold file:bg-linkedin-light file:text-linkedin-hover hover:file:bg-linkedin/20 cursor-pointer bg-white border border-gray-200 rounded-md transition">
-                                        </div>
-
-                                        <div class="flex flex-col gap-1.5 border-t border-red-200 pt-3 bg-red-50/50 -mx-3 md:-mx-4 px-3 md:px-4 pb-3 md:pb-4 rounded-b-xl">
+                                        <div class="flex flex-col gap-1.5 border-t border-red-200 pt-3 bg-red-50/50 -mx-3 md:-mx-4 px-3 md:px-4 pb-3 rounded-b-xl">
                                             <div class="flex justify-between items-center text-[10px] md:text-xs">
                                                 <span class="font-bold text-red-700">Inducción de Seguridad</span>
-                                                <input type="date" value="2026-03-10" class="border border-red-300 rounded-md px-1 md:px-2 py-1 text-[10px] md:text-[11px] font-mono text-red-700 bg-white focus:ring-1 focus:ring-red-500 outline-none w-24 md:w-auto">
+                                                <input type="date" value="2026-03-10" class="border border-red-300 rounded-md px-1 md:px-2 py-1 text-[10px] font-mono text-red-700 bg-white focus:ring-1 focus:ring-red-500 outline-none w-24">
                                             </div>
-                                            <p class="text-[8px] md:text-[9px] text-red-600 font-bold mb-0.5">⚠️ Requiere actualizar archivo de respaldo.</p>
-                                            <input type="file" class="block w-full text-[9px] md:text-[10px] text-red-600 file:mr-2 md:file:mr-3 file:py-1 file:px-2 md:file:px-3 file:rounded-md file:border-0 file:text-[9px] md:file:text-xs file:font-bold file:bg-red-100 file:text-red-800 hover:file:bg-red-200 cursor-pointer bg-white border border-red-200 rounded-md transition">
+                                            <p class="text-[8px] md:text-[9px] text-red-600 font-bold mb-0.5">⚠️ Vencido. Requiere actualizar.</p>
+                                            <input type="file" class="block w-full text-[9px] text-red-600 file:mr-2 file:py-1 file:px-2 file:rounded-md file:border-0 file:text-[9px] file:font-bold file:bg-red-100 file:text-red-800 hover:file:bg-red-200 cursor-pointer bg-white border border-red-200 rounded-md transition">
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
+                                    <div class="flex items-center justify-between border-b border-gray-100 pb-3 mb-3">
+                                        <div class="flex items-center">
+                                            <div class="w-10 h-10 md:w-12 md:h-12 bg-gray-200 rounded-full bg-cover mr-3 md:mr-4 border border-gray-200 shrink-0" style="background-image: url('https://i.pravatar.cc/150?img=11');"></div>
+                                            <div>
+                                                <p class="font-bold text-slate-800 text-sm md:text-base">Juan Pérez</p>
+                                                <p class="text-[10px] md:text-xs text-gray-500 mt-0.5">RUT: <span class="font-mono font-medium">12.345.678-9</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="bg-green-50/50 p-3 md:p-4 rounded-xl border border-green-100 space-y-3">
+                                        <p class="text-[9px] md:text-[10px] font-black text-green-800 uppercase border-b border-green-200 pb-1.5">Evidencia Documental</p>
+                                        <div class="flex justify-between items-center text-[10px] md:text-xs">
+                                            <span class="font-bold text-gray-700">Examen Médico</span>
+                                            <span class="text-[10px] font-mono bg-green-100 text-green-800 px-2 py-0.5 rounded border border-green-200">Al día</span>
+                                        </div>
+                                        <div class="flex justify-between items-center text-[10px] md:text-xs border-t border-green-100 pt-2">
+                                            <span class="font-bold text-gray-700">Inducción de Seguridad</span>
+                                            <span class="text-[10px] font-mono bg-green-100 text-green-800 px-2 py-0.5 rounded border border-green-200">Al día</span>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
 
                         <div class="border border-gray-200 rounded-xl overflow-hidden flex flex-col h-auto md:h-[700px] shadow-sm bg-white">
                             <div class="bg-gray-50 p-4 md:p-5 border-b border-gray-200 flex justify-between items-center">
                                 <div>
-                                    <h4 class="font-bold text-slate-800 text-base md:text-lg">Flota Asociada</h4>
+                                    <h4 class="font-bold text-slate-800 text-base md:text-lg">Flota (2)</h4>
                                 </div>
                                 <button onclick="openModal('modal-vehiculo')" class="text-xs bg-linkedin hover:bg-linkedin-hover text-white font-bold px-3 md:px-4 py-2 rounded-lg shadow-md transition">
-                                    + Nuevo Vehículo
+                                    + Nuevo
                                 </button>
                             </div>
                             
                             <div class="p-4 md:p-5 overflow-y-auto flex-1 bg-gray-50/50 space-y-4">
+                                
                                 <div class="bg-white border border-gray-200 rounded-xl p-4 md:p-5 shadow-sm">
-                                    
-                                    <div class="flex justify-between items-start md:items-center border-b border-gray-100 pb-3 md:pb-4 mb-4">
+                                    <div class="flex justify-between items-start md:items-center border-b border-gray-100 pb-3 mb-3">
                                         <div>
-                                            <span class="text-[9px] md:text-[10px] text-gray-400 block uppercase font-bold mb-1">Patente (Tracto)</span>
+                                            <span class="text-[9px] md:text-[10px] text-gray-400 block uppercase font-bold mb-1">Tracto</span>
                                             <span class="text-base md:text-lg font-black bg-slate-800 text-white px-2 md:px-3 py-1 rounded-lg inline-block shadow-sm">KBCW-89</span>
                                         </div>
                                         <div class="text-right">
@@ -351,47 +471,103 @@
                                             <span class="text-sm md:text-base font-bold bg-gray-100 border border-gray-200 px-2 md:px-3 py-1 rounded-lg text-gray-800 inline-block">RM-4455</span>
                                         </div>
                                     </div>
-                                    
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 mb-4 text-xs text-gray-700">
-                                        <div class="md:col-span-2">
-                                            <span class="text-gray-400 block text-[9px] uppercase font-bold mb-0.5">Número de Chasis (VIN)</span>
-                                            <span class="font-mono font-medium text-gray-800">9BMMX83B10C123456</span>
-                                        </div>
+                                    <div class="grid grid-cols-2 gap-3 text-xs text-gray-700">
+                                        <div><span class="text-gray-400 block text-[9px] uppercase font-bold mb-0.5">Capacidad</span><span class="font-medium text-gray-800">28,000 kg</span></div>
+                                        <div><span class="text-gray-400 block text-[9px] uppercase font-bold mb-0.5">Combustible</span><span class="font-medium text-gray-800">Diesel</span></div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-white border border-gray-200 rounded-xl p-4 md:p-5 shadow-sm">
+                                    <div class="flex justify-between items-start md:items-center border-b border-gray-100 pb-3 mb-3">
                                         <div>
-                                            <span class="text-gray-400 block text-[9px] uppercase font-bold mb-0.5">Capacidad Máxima</span>
-                                            <span class="font-medium text-gray-800">28,000 kg</span>
+                                            <span class="text-[9px] md:text-[10px] text-gray-400 block uppercase font-bold mb-1">Tracto</span>
+                                            <span class="text-base md:text-lg font-black bg-slate-800 text-white px-2 md:px-3 py-1 rounded-lg inline-block shadow-sm">HHTY-22</span>
                                         </div>
-                                        <div>
-                                            <span class="text-gray-400 block text-[9px] uppercase font-bold mb-0.5">Combustible</span>
-                                            <span class="font-medium text-gray-800">Diesel</span>
+                                        <div class="text-right">
+                                            <span class="text-[9px] md:text-[10px] text-gray-400 block uppercase font-bold mb-1">Remolque</span>
+                                            <span class="text-sm md:text-base font-bold bg-gray-100 border border-gray-200 px-2 md:px-3 py-1 rounded-lg text-gray-800 inline-block">RM-1122</span>
                                         </div>
                                     </div>
+                                    <div class="grid grid-cols-2 gap-3 text-xs text-gray-700">
+                                        <div><span class="text-gray-400 block text-[9px] uppercase font-bold mb-0.5">Capacidad</span><span class="font-medium text-gray-800">15,000 kg</span></div>
+                                        <div><span class="text-gray-400 block text-[9px] uppercase font-bold mb-0.5">Combustible</span><span class="font-medium text-gray-800">Diesel</span></div>
+                                    </div>
+                                </div>
 
-                                    <div class="bg-gray-50 p-3 md:p-4 rounded-xl border border-gray-200 space-y-3 md:space-y-4">
-                                        <p class="text-[9px] md:text-[10px] font-black text-gray-600 uppercase border-b border-gray-200 pb-1.5 md:pb-2">Documentación del Vehículo</p>
-                                        
-                                        <div class="flex flex-col gap-1.5">
-                                            <div class="flex justify-between items-center text-[10px] md:text-xs">
-                                                <span class="font-bold text-gray-700">Póliza de Seguro</span>
-                                                <input type="text" value="POL-77382" class="border border-gray-300 rounded-md px-2 py-1 text-[10px] md:text-[11px] font-mono text-gray-700 bg-white w-20 md:w-32 focus:ring-2 focus:ring-linkedin outline-none transition">
-                                            </div>
-                                            <input type="file" class="block w-full text-[9px] md:text-[10px] text-gray-500 file:mr-2 md:file:mr-3 file:py-1 file:px-2 md:file:px-3 file:rounded-md file:border-0 file:text-[9px] md:file:text-xs file:font-bold file:bg-white file:border file:border-gray-300 file:text-gray-700 hover:file:bg-gray-50 cursor-pointer bg-white border border-gray-200 rounded-md transition">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4 md:p-6">
+                    
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-center border-b border-gray-100 pb-4 md:pb-5 mb-5 space-y-4 md:space-y-0">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 md:w-14 md:h-14 bg-emerald-600 text-white rounded-xl flex items-center justify-center font-bold text-lg md:text-xl mr-4 shadow-sm shrink-0">LN</div>
+                            <div>
+                                <h3 class="font-black text-lg md:text-2xl text-gray-800 leading-tight">Logística Norte Ltda</h3>
+                                <p class="text-[10px] md:text-xs text-gray-500 font-medium mt-1">RUT Empresa: <span class="font-mono text-gray-700 bg-gray-50 px-1 rounded border border-gray-100">88.999.111-2</span></p>
+                            </div>
+                        </div>
+                        <button class="w-full md:w-auto bg-white hover:bg-gray-50 text-gray-700 px-4 py-2 rounded-lg text-sm font-bold transition border border-gray-300 shadow-sm">
+                            Editar Datos Empresa
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 md:gap-8">
+                        
+                        <div class="border border-gray-200 rounded-xl overflow-hidden flex flex-col h-auto md:h-[400px] shadow-sm bg-white">
+                            <div class="bg-gray-50 p-4 border-b border-gray-200 flex justify-between items-center">
+                                <h4 class="font-bold text-slate-800 text-base">Conductores (1)</h4>
+                                <button onclick="openModal('modal-conductor')" class="text-xs bg-linkedin hover:bg-linkedin-hover text-white font-bold px-3 py-1.5 rounded-lg shadow-md transition">+ Nuevo</button>
+                            </div>
+                            <div class="p-4 overflow-y-auto flex-1 bg-gray-50/50">
+                                <div class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
+                                    <div class="flex items-center mb-3">
+                                        <div class="w-10 h-10 bg-gray-200 rounded-full bg-cover mr-3 border border-gray-200 shrink-0" style="background-image: url('https://i.pravatar.cc/150?img=33');"></div>
+                                        <div>
+                                            <p class="font-bold text-slate-800 text-sm">Pedro Gómez</p>
+                                            <p class="text-[10px] text-gray-500">RUT: <span class="font-mono">19.876.543-2</span></p>
                                         </div>
                                     </div>
+                                    <div class="bg-yellow-50/50 p-3 rounded-xl border border-yellow-100">
+                                        <div class="flex justify-between items-center text-[10px]">
+                                            <span class="font-bold text-yellow-700">Examen Médico</span>
+                                            <span class="font-mono bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded border border-yellow-200">Vence en 5 días</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
+                        <div class="border border-gray-200 rounded-xl overflow-hidden flex flex-col h-auto md:h-[400px] shadow-sm bg-white">
+                            <div class="bg-gray-50 p-4 border-b border-gray-200 flex justify-between items-center">
+                                <h4 class="font-bold text-slate-800 text-base">Flota (2)</h4>
+                                <button onclick="openModal('modal-vehiculo')" class="text-xs bg-linkedin hover:bg-linkedin-hover text-white font-bold px-3 py-1.5 rounded-lg shadow-md transition">+ Nuevo</button>
+                            </div>
+                            <div class="p-4 overflow-y-auto flex-1 bg-gray-50/50 space-y-4">
+                                <div class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm flex justify-between items-center">
+                                    <div><span class="text-[9px] text-gray-400 block uppercase font-bold">Tracto / Remolque</span><span class="text-sm font-black text-gray-800">LLPM-55 / RN-9988</span></div>
+                                    <div class="text-right"><span class="text-[9px] text-gray-400 block uppercase font-bold">Combustible</span><span class="text-xs font-bold text-green-600 bg-green-50 px-2 rounded border border-green-100">Eléctrico</span></div>
+                                </div>
+                                <div class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm flex justify-between items-center">
+                                    <div><span class="text-[9px] text-gray-400 block uppercase font-bold">Tracto / Remolque</span><span class="text-sm font-black text-gray-800">RTX-99 / RN-7766</span></div>
+                                    <div class="text-right"><span class="text-[9px] text-gray-400 block uppercase font-bold">Combustible</span><span class="text-xs font-bold text-gray-600">Diesel</span></div>
                                 </div>
                             </div>
                         </div>
 
                     </div>
                 </div>
+
             </div>
 
             <div id="slide-over" class="absolute inset-y-0 right-0 w-full sm:w-[500px] md:w-[600px] bg-white shadow-2xl border-l border-gray-200 translate-x-full transition-transform z-50 flex flex-col">
                 <div class="px-4 md:px-6 py-4 md:py-5 border-b border-gray-200 bg-slate-900 flex justify-between items-center shrink-0 z-10">
                     <div>
                         <h3 id="panel-title" class="text-lg md:text-xl font-black text-white">Gestión: TRP-001</h3>
-                        <p id="panel-subtitle" class="text-[10px] md:text-xs text-linkedin-light font-bold mt-0.5">Viaje en Curso - Edición Habilitada</p>
+                        <p id="panel-subtitle" class="text-[10px] md:text-xs text-linkedin-light font-bold mt-0.5">Edición Habilitada</p>
                     </div>
                     <button onclick="toggleSlideOver()" class="text-gray-400 hover:text-white text-3xl leading-none transition px-2">&times;</button>
                 </div>
@@ -405,96 +581,21 @@
                         </div>
                         
                         <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 mb-5 bg-white p-3 md:p-4 rounded-xl border border-linkedin/10 shadow-sm">
-                            <div class="flex flex-col">
-                                <span class="text-[9px] md:text-[10px] text-gray-500 font-bold uppercase mb-1 md:mb-2">Cond. Activo</span>
-                                <label class="flex items-center cursor-pointer">
-                                    <input type="checkbox" class="sr-only toggle-checkbox" checked>
-                                    <div class="block bg-gray-200 w-8 md:w-10 h-5 md:h-6 rounded-full toggle-label transition"></div>
-                                </label>
-                            </div>
-                            <div class="flex flex-col">
-                                <span class="text-[9px] md:text-[10px] text-gray-500 font-bold uppercase mb-1 md:mb-2">Vehículo Trab.</span>
-                                <label class="flex items-center cursor-pointer">
-                                    <input type="checkbox" class="sr-only toggle-checkbox" checked>
-                                    <div class="block bg-gray-200 w-8 md:w-10 h-5 md:h-6 rounded-full toggle-label transition"></div>
-                                </label>
-                            </div>
-                            <div class="flex flex-col col-span-2 md:col-span-1">
-                                <span class="text-[9px] md:text-[10px] text-gray-500 font-bold uppercase mb-1 md:mb-2">1ra Vuelta</span>
-                                <label class="flex items-center cursor-pointer">
-                                    <input type="checkbox" class="sr-only toggle-checkbox" checked>
-                                    <div class="block bg-gray-200 w-8 md:w-10 h-5 md:h-6 rounded-full toggle-label transition"></div>
-                                </label>
-                            </div>
+                            <div class="flex flex-col"><span class="text-[9px] md:text-[10px] text-gray-500 font-bold uppercase mb-1 md:mb-2">Cond. Activo</span><label class="flex items-center cursor-pointer"><input type="checkbox" class="sr-only toggle-checkbox" checked><div class="block bg-gray-200 w-8 md:w-10 h-5 md:h-6 rounded-full toggle-label transition"></div></label></div>
+                            <div class="flex flex-col"><span class="text-[9px] md:text-[10px] text-gray-500 font-bold uppercase mb-1 md:mb-2">Vehículo Trab.</span><label class="flex items-center cursor-pointer"><input type="checkbox" class="sr-only toggle-checkbox" checked><div class="block bg-gray-200 w-8 md:w-10 h-5 md:h-6 rounded-full toggle-label transition"></div></label></div>
+                            <div class="flex flex-col col-span-2 md:col-span-1"><span class="text-[9px] md:text-[10px] text-gray-500 font-bold uppercase mb-1 md:mb-2">1ra Vuelta</span><label class="flex items-center cursor-pointer"><input type="checkbox" class="sr-only toggle-checkbox" checked><div class="block bg-gray-200 w-8 md:w-10 h-5 md:h-6 rounded-full toggle-label transition"></div></label></div>
                         </div>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
-                            <div>
-                                <label class="text-[9px] md:text-[10px] text-gray-600 font-bold uppercase mb-1 md:mb-1.5 block">Estado</label>
-                                <select class="w-full text-xs md:text-sm border border-gray-300 rounded-lg px-3 py-2 md:py-2.5 bg-white focus:ring-2 focus:ring-linkedin outline-none transition text-gray-800">
-                                    <option selected>EN DESCARGA</option>
-                                    <option>COMPLETADO</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="text-[9px] md:text-[10px] text-gray-600 font-bold uppercase mb-1 md:mb-1.5 block">Locales Asignados</label>
-                                <input type="text" value="Tienda Costanera" class="w-full text-xs md:text-sm border border-gray-300 rounded-lg px-3 py-2 md:py-2.5 bg-white focus:ring-2 focus:ring-linkedin outline-none transition text-gray-800">
-                            </div>
+                            <div><label class="text-[9px] md:text-[10px] text-gray-600 font-bold uppercase mb-1 md:mb-1.5 block">Estado</label><select class="w-full text-xs md:text-sm border border-gray-300 rounded-lg px-3 py-2 md:py-2.5 bg-white focus:ring-2 focus:ring-linkedin outline-none"><option selected>EN DESCARGA</option><option>EN RUTA</option><option>RETORNANDO</option><option>EN PANA</option><option>COMPLETADO</option></select></div>
+                            <div><label class="text-[9px] md:text-[10px] text-gray-600 font-bold uppercase mb-1 md:mb-1.5 block">Locales</label><input type="text" value="Tienda Costanera" class="w-full text-xs md:text-sm border border-gray-300 rounded-lg px-3 py-2 md:py-2.5 bg-white focus:ring-2 focus:ring-linkedin outline-none"></div>
                         </div>
 
                         <div id="input-novedad" class="mb-5">
                             <label class="text-[9px] md:text-[10px] text-gray-600 font-bold uppercase mb-1 md:mb-1.5 block">Agregar Observación</label>
                             <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2">
-                                <input type="text" placeholder="Escriba la novedad aquí..." class="w-full text-xs md:text-sm border border-gray-300 rounded-lg px-3 py-2 md:py-2.5 bg-white focus:ring-2 focus:ring-linkedin outline-none transition">
-                                <button class="w-full md:w-auto bg-linkedin text-white text-xs font-bold px-6 py-2 md:py-2.5 rounded-lg shadow-md hover:bg-linkedin-hover transition">
-                                    Guardar
-                                </button>
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="text-[9px] md:text-[10px] text-gray-500 font-bold uppercase mb-1.5 block">Historial de Observaciones</label>
-                            <div class="bg-white border border-gray-200 rounded-xl p-3 md:p-4 h-32 overflow-y-auto text-xs space-y-2 md:space-y-3 text-gray-700 shadow-inner">
-                                <p><span class="font-bold text-gray-500">11:45 hrs:</span> Llegada a local. Esperando andén de descarga asignado.</p>
-                                <p class="border-t border-gray-100 pt-2 md:pt-2.5"><span class="font-bold text-gray-500">09:15 hrs:</span> Vehículo cargado. Salida desde CD.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-4 md:p-6">
-                        <h4 class="text-[10px] md:text-xs font-bold text-slate-800 uppercase tracking-wider mb-3 md:mb-4 border-b border-gray-100 pb-2">Información Maestra</h4>
-                        <div class="grid grid-cols-2 gap-y-4 md:gap-y-5 gap-x-4 text-xs md:text-sm">
-                            <div>
-                                <p class="text-[9px] md:text-[10px] text-gray-400 uppercase font-bold mb-0.5 md:mb-1">Cliente</p>
-                                <p class="font-bold text-gray-800">Falabella</p>
-                            </div>
-                            <div>
-                                <p class="text-[9px] md:text-[10px] text-gray-400 uppercase font-bold mb-0.5 md:mb-1">Transportista</p>
-                                <p class="font-bold text-gray-800">Transportes del Sur</p>
-                            </div>
-                            <div>
-                                <p class="text-[9px] md:text-[10px] text-gray-400 uppercase font-bold mb-0.5 md:mb-1">Patente</p>
-                                <p class="font-bold text-gray-800 bg-gray-100 px-2 py-1 rounded-md inline-block border border-gray-200">KBCW-89</p>
-                            </div>
-                            <div>
-                                <p class="text-[9px] md:text-[10px] text-gray-400 uppercase font-bold mb-0.5 md:mb-1">Conductor</p>
-                                <p class="font-bold text-gray-800">Carlos Sepúlveda</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-4 md:p-6">
-                        <h4 class="text-[10px] md:text-xs font-bold text-slate-800 uppercase tracking-wider mb-3 md:mb-4 border-b border-gray-100 pb-2">Hitos Automáticos (GPS)</h4>
-                        <div class="relative border-l-2 border-gray-200 ml-4 space-y-4 md:space-y-5 text-xs md:text-sm">
-                            <div class="relative pl-6">
-                                <div class="absolute -left-[11px] top-1 w-5 h-5 bg-linkedin rounded-full border-[3px] border-white shadow-sm"></div>
-                                <p class="font-bold text-slate-800">Salida desde Origen</p>
-                                <p class="text-[10px] md:text-xs text-gray-500 font-medium mt-0.5">19/03 - 09:15:22</p>
-                            </div>
-                            <div class="relative pl-6">
-                                <div class="absolute -left-[11px] top-1 w-5 h-5 bg-linkedin rounded-full border-[3px] border-white shadow-sm"></div>
-                                <p class="font-bold text-slate-800">Llegada a Destino</p>
-                                <p class="text-[10px] md:text-xs text-gray-500 font-medium mt-0.5">19/03 - 11:44:10</p>
+                                <input type="text" placeholder="Novedad..." class="w-full text-xs md:text-sm border border-gray-300 rounded-lg px-3 py-2 bg-white focus:ring-2 focus:ring-linkedin outline-none">
+                                <button class="w-full md:w-auto bg-linkedin text-white text-xs font-bold px-6 py-2 md:py-2.5 rounded-lg shadow-md hover:bg-linkedin-hover transition">Guardar</button>
                             </div>
                         </div>
                     </div>
@@ -505,29 +606,17 @@
 
     <div id="modal-empresa" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center modal-enter p-4">
         <div class="bg-white w-full max-w-[500px] rounded-2xl shadow-2xl flex flex-col overflow-hidden max-h-[95vh]">
-            <div class="px-5 md:px-6 py-4 border-b border-gray-100 bg-white flex justify-between items-center">
-                <h3 class="font-black text-base md:text-lg text-slate-800">Crear Nueva Empresa</h3>
-                <button onclick="closeModal('modal-empresa')" class="text-gray-400 hover:text-gray-800 text-2xl leading-none transition">&times;</button>
-            </div>
-            <div class="p-5 md:p-6 space-y-4 md:space-y-5 overflow-y-auto">
-                <div>
-                    <label class="block text-[10px] md:text-xs font-bold text-gray-700 mb-1.5">Razón Social</label>
-                    <input type="text" placeholder="Ej. Transportes del Norte S.A." class="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:ring-2 focus:ring-linkedin outline-none transition">
-                </div>
+            <div class="px-5 md:px-6 py-4 border-b border-gray-100 bg-white flex justify-between items-center"><h3 class="font-black text-base md:text-lg text-slate-800">Crear Empresa</h3><button onclick="closeModal('modal-empresa')" class="text-gray-400 hover:text-gray-800 text-2xl">&times;</button></div>
+            <div class="p-5 md:p-6 space-y-4 overflow-y-auto">
+                <div><label class="block text-[10px] md:text-xs font-bold text-gray-700 mb-1">Razón Social</label><input type="text" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-linkedin outline-none"></div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-[10px] md:text-xs font-bold text-gray-700 mb-1.5">RUT Tractos</label>
-                        <input type="text" class="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm font-mono focus:ring-2 focus:ring-linkedin outline-none transition">
-                    </div>
-                    <div>
-                        <label class="block text-[10px] md:text-xs font-bold text-gray-700 mb-1.5">RUT Remolques</label>
-                        <input type="text" class="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm font-mono focus:ring-2 focus:ring-linkedin outline-none transition">
-                    </div>
+                    <div><label class="block text-[10px] md:text-xs font-bold text-gray-700 mb-1">RUT Tractos</label><input type="text" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm font-mono focus:ring-2 focus:ring-linkedin outline-none"></div>
+                    <div><label class="block text-[10px] md:text-xs font-bold text-gray-700 mb-1">RUT Remolques</label><input type="text" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm font-mono focus:ring-2 focus:ring-linkedin outline-none"></div>
                 </div>
             </div>
             <div class="px-5 md:px-6 py-4 border-t border-gray-100 bg-gray-50 flex flex-col md:flex-row justify-end space-y-2 md:space-y-0 md:space-x-3">
-                <button onclick="closeModal('modal-empresa')" class="w-full md:w-auto px-5 py-2.5 text-sm text-gray-600 font-bold hover:bg-gray-200 rounded-lg transition">Cancelar</button>
-                <button onclick="closeModal('modal-empresa')" class="w-full md:w-auto px-5 py-2.5 text-sm bg-linkedin text-white font-bold rounded-lg hover:bg-linkedin-hover shadow-md transition">Guardar Empresa</button>
+                <button onclick="closeModal('modal-empresa')" class="w-full md:w-auto px-5 py-2.5 text-sm text-gray-600 font-bold hover:bg-gray-200 rounded-lg">Cancelar</button>
+                <button onclick="closeModal('modal-empresa')" class="w-full md:w-auto px-5 py-2.5 text-sm bg-linkedin text-white font-bold rounded-lg shadow-md">Guardar</button>
             </div>
         </div>
     </div>
@@ -535,7 +624,7 @@
     <div id="modal-conductor" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center modal-enter p-4">
         <div class="bg-white w-full max-w-[600px] rounded-2xl shadow-2xl flex flex-col overflow-hidden max-h-[95vh]">
             <div class="px-5 md:px-6 py-4 border-b border-gray-100 bg-white flex justify-between items-center">
-                <h3 class="font-black text-base md:text-lg text-slate-800">Registrar Nuevo Conductor</h3>
+                <h3 class="font-black text-base md:text-lg text-slate-800">Registrar Conductor</h3>
                 <button onclick="closeModal('modal-conductor')" class="text-gray-400 hover:text-gray-800 text-2xl leading-none transition">&times;</button>
             </div>
             <div class="p-5 md:p-6 overflow-y-auto space-y-4 md:space-y-5">
@@ -554,13 +643,13 @@
                     </div>
                 </div>
                 <div class="border-t border-gray-100 pt-4 md:pt-5 mt-2">
-                    <label class="block text-[10px] md:text-xs font-bold text-gray-700 mb-2">Adjuntar Documentación Base (PDF/JPG)</label>
+                    <label class="block text-[10px] md:text-xs font-bold text-gray-700 mb-2">Adjuntar Evidencia Base (PDF/JPG)</label>
                     <input type="file" multiple class="block w-full text-xs text-gray-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-md file:border-0 file:text-[10px] md:file:text-xs file:font-bold file:bg-linkedin-light file:text-linkedin-hover hover:file:bg-linkedin/20 border border-gray-300 rounded-lg cursor-pointer transition">
                 </div>
             </div>
             <div class="px-5 md:px-6 py-4 border-t border-gray-100 bg-gray-50 flex flex-col md:flex-row justify-end space-y-2 md:space-y-0 md:space-x-3">
                 <button onclick="closeModal('modal-conductor')" class="w-full md:w-auto px-5 py-2.5 text-sm text-gray-600 font-bold hover:bg-gray-200 rounded-lg transition">Cancelar</button>
-                <button onclick="closeModal('modal-conductor')" class="w-full md:w-auto px-5 py-2.5 text-sm bg-linkedin text-white font-bold rounded-lg hover:bg-linkedin-hover shadow-md transition">Crear Perfil</button>
+                <button onclick="closeModal('modal-conductor')" class="w-full md:w-auto px-5 py-2.5 text-sm bg-linkedin text-white font-bold rounded-lg shadow-md transition">Crear Perfil</button>
             </div>
         </div>
     </div>
@@ -568,7 +657,7 @@
     <div id="modal-vehiculo" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center modal-enter p-4">
         <div class="bg-white w-full max-w-[500px] rounded-2xl shadow-2xl flex flex-col overflow-hidden max-h-[95vh]">
             <div class="px-5 md:px-6 py-4 border-b border-gray-100 bg-white flex justify-between items-center">
-                <h3 class="font-black text-base md:text-lg text-slate-800">Registrar Nuevo Vehículo</h3>
+                <h3 class="font-black text-base md:text-lg text-slate-800">Registrar Vehículo</h3>
                 <button onclick="closeModal('modal-vehiculo')" class="text-gray-400 hover:text-gray-800 text-2xl leading-none transition">&times;</button>
             </div>
             <div class="p-5 md:p-6 space-y-4 md:space-y-5 overflow-y-auto">
@@ -600,7 +689,7 @@
             </div>
             <div class="px-5 md:px-6 py-4 border-t border-gray-100 bg-gray-50 flex flex-col md:flex-row justify-end space-y-2 md:space-y-0 md:space-x-3">
                 <button onclick="closeModal('modal-vehiculo')" class="w-full md:w-auto px-5 py-2.5 text-sm text-gray-600 font-bold hover:bg-gray-200 rounded-lg transition">Cancelar</button>
-                <button onclick="closeModal('modal-vehiculo')" class="w-full md:w-auto px-5 py-2.5 text-sm bg-linkedin text-white font-bold rounded-lg hover:bg-linkedin-hover shadow-md transition">Registrar Flota</button>
+                <button onclick="closeModal('modal-vehiculo')" class="w-full md:w-auto px-5 py-2.5 text-sm bg-linkedin text-white font-bold rounded-lg shadow-md transition">Registrar Flota</button>
             </div>
         </div>
     </div>
@@ -641,18 +730,18 @@
             document.getElementById('header-transporters').classList.add('hidden');
             
             // Resetear estilos de los botones del menú (inactivo)
-            document.getElementById('nav-dashboard').className = "w-full text-left px-4 py-2.5 hover:bg-slate-800 rounded-lg text-sm font-medium transition flex justify-between items-center";
-            document.getElementById('nav-transporters').className = "w-full text-left px-4 py-2.5 hover:bg-slate-800 rounded-lg text-sm font-medium transition flex justify-between items-center";
+            document.getElementById('nav-dashboard').className = "w-full text-left px-4 py-2.5 hover:bg-slate-800 rounded-lg text-sm font-medium transition flex items-center";
+            document.getElementById('nav-transporters').className = "w-full text-left px-4 py-2.5 hover:bg-slate-800 rounded-lg text-sm font-medium transition flex items-center";
 
             // Mostrar vista seleccionada
             document.getElementById(`page-${pageId}`).classList.remove('hidden');
             document.getElementById(`header-${pageId}`).classList.remove('hidden');
             
-            // Aplicar estilo activo (Azul LinkedIn) al botón presionado
+            // Aplicar estilo activo al botón presionado
             if(pageId === 'dashboard') {
-                document.getElementById('nav-dashboard').className = "w-full text-left px-4 py-2.5 bg-linkedin text-white font-bold rounded-lg text-sm transition shadow-md flex justify-between items-center";
+                document.getElementById('nav-dashboard').className = "w-full text-left px-4 py-2.5 bg-linkedin text-white font-bold rounded-lg text-sm transition shadow-md flex items-center";
             } else {
-                document.getElementById('nav-transporters').className = "w-full text-left px-4 py-2.5 bg-linkedin text-white font-bold rounded-lg text-sm transition shadow-md flex justify-between items-center";
+                document.getElementById('nav-transporters').className = "w-full text-left px-4 py-2.5 bg-linkedin text-white font-bold rounded-lg text-sm transition shadow-md flex items-center";
             }
             
             // Ocultar menú en pantallas pequeñas automáticamente al hacer clic
@@ -707,7 +796,6 @@
 
                 // Lógica de Auditoría vs Lógica de Edición Diaria
                 if (mode === 'historial') {
-                    // Modo Histórico: Viaje cerrado, solo lectura
                     title.innerText = `Registro Histórico: ${id}`;
                     subtitle.innerText = "Auditoría Solo Lectura";
                     subtitle.className = "text-[10px] md:text-xs text-gray-400 font-bold mt-0.5";
@@ -716,7 +804,6 @@
                     if(inputNovedad) inputNovedad.classList.add('hidden');
                     inputs.forEach(i => i.disabled = true);
                 } else {
-                    // Modo Vivo: Viaje en curso, permite edición
                     title.innerText = `Gestión: ${id}`;
                     subtitle.innerText = "Edición Habilitada";
                     subtitle.className = "text-[10px] md:text-xs text-linkedin-light font-bold mt-0.5";
@@ -727,7 +814,6 @@
                 }
             }
 
-            // Efecto de deslizamiento
             if (isSlideOverOpen) {
                 slide.classList.add('translate-x-full');
             } else {
