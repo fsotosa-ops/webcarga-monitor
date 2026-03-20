@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webcarga - Plataforma de Gestión Operativa (Full)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .transition-transform { transition: transform 0.3s ease-in-out; }
+        .translate-x-full { transform: translateX(100%); }
+        .hidden { display: none !important; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .toggle-checkbox:checked { right: 0; border-color: #2563EB; }
+        .toggle-checkbox:checked + .toggle-label { background-color: #2563EB; }
+        .modal-enter { animation: fadeIn 0.2s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans text-gray-800 h-screen overflow-hidden flex">
+
+    <div id="view-login" class="w-full h-full flex flex-col items-center justify-center bg-slate-900 relative z-50">
+        <div class="bg-white p-8 rounded-xl shadow-2xl w-96 max-w-full">
+            <div class="text-center mb-8">
+                <h1 class="text-3xl font-black tracking-wider text-slate-900">WEBCARGA<span class="text-blue-600">.</span></h1>
+                <p class="text-sm text-gray-500 mt-2">Plataforma de Gestión Operativa</p>
+            </div>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-xs font-medium text-gray-700 mb-1">Correo Electrónico</label>
+                    <input type="email" value="operador@webcarga.com" class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-gray-700 mb-1">Contraseña</label>
+                    <input type="password" value="password" class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 outline-none">
+                </div>
+                <button onclick="login()" class="w-full bg-blue-600 text-white font-medium py-2 rounded hover:bg-blue-700 transition shadow-lg mt-2">Ingresar al Sistema</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="view-app" class="hidden w-full h-full flex">
+        
+        <aside class="w-64 bg-slate-900 text-white flex flex-col shrink-0 z-10">
+            <div class="h-16 flex items-center px-6 border-b border-slate-800">
+                <h1 class="text-xl font-black tracking-wider">WEBCARGA<span class="text-blue-500">.</span></h1>
+            </div>
+            <div class="px-4 py-4 text-[10px] font-bold text-slate-500 uppercase tracking-wider">Módulos Operativos</div>
+            <nav class="flex-1 px-4 space-y-2">
+                <button onclick="navigate('dashboard')" id="nav-dashboard" class="w-full text-left px-4 py-2 bg-blue-600 rounded text-sm font-medium transition shadow">Monitor y Diario 2.0</button>
+                <button onclick="navigate('transporters')" id="nav-transporters" class="w-full text-left px-4 py-2 hover:bg-slate-800 rounded text-sm text-gray-300 transition flex justify-between items-center">
+                    Directorio de Empresas
+                </button>
+            </nav>
+            <div class="p-4 border-t border-slate-800 cursor-pointer hover:bg-slate-800 transition" onclick="logout()">
+                <div class="flex items-center">
+                    <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center font-bold text-xs mr-3">OP</div>
+                    <div>
+                        <p class="text-sm font-medium">Gestor Operativo</p>
+                        <p class="text-[10px] text-red-400 hover:underline uppercase tracking-wider">Cerrar Sesión</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="flex-1 flex flex-col relative overflow-hidden bg-gray-50">
+            
+            <div id="header-dashboard">
+                <header class="bg-white border-b border-gray-200 shrink-0">
+                    <div class="h-16 flex items-center justify-between px-8">
+                        <div>
+                            <h2 class="text-lg font-semibold text-gray-800">Módulo de Viajes (Diario 2.0)</h2>
+                            <p class="text-xs text-gray-500">Gestión de la operación en curso y consulta de base histórica</p>
+                        </div>
+                        <button class="bg-slate-800 hover:bg-slate-700 text-white text-sm font-medium px-4 py-2 rounded transition">+ Nuevo Viaje Manual</button>
+                    </div>
+                    <div class="px-8 flex space-x-6 text-sm">
+                        <button onclick="switchTab('vivo')" id="tab-vivo" class="pb-3 border-b-2 border-blue-600 font-bold text-blue-600 transition">En Curso (Hoy)</button>
+                        <button onclick="switchTab('historial')" id="tab-historial" class="pb-3 border-b-2 border-transparent font-medium text-gray-500 hover:text-gray-800 transition">Base Histórica y Filtros</button>
+                    </div>
+                </header>
+                <div id="filter-bar" class="hidden bg-white border-b border-gray-200 px-8 py-3 flex space-x-4 shrink-0 shadow-sm items-end">
+                    <div class="flex-1"><label class="block text-[10px] text-gray-500 font-bold uppercase mb-1">Desde - Hasta</label><div class="flex space-x-2"><input type="date" value="2026-02-01" class="border border-gray-300 rounded px-2 py-1.5 text-xs w-full"><input type="date" value="2026-03-19" class="border border-gray-300 rounded px-2 py-1.5 text-xs w-full"></div></div>
+                    <div class="w-40"><label class="block text-[10px] text-gray-500 font-bold uppercase mb-1">Estado</label><select class="border border-gray-300 rounded px-2 py-1.5 text-xs w-full bg-white"><option>Todos</option><option>COMPLETADO</option><option>CANCELADO</option></select></div>
+                    <div class="flex space-x-2"><button class="bg-blue-600 text-white text-xs font-bold px-4 py-1.5 rounded hover:bg-blue-700 h-[28px]">Filtrar</button><button class="bg-green-50 text-green-700 border border-green-200 text-xs font-bold px-4 py-1.5 rounded hover:bg-green-100 h-[28px]">Exportar CSV</button></div>
+                </div>
+            </div>
+
+            <header id="header-transporters" class="hidden h-16 bg-white border-b border-gray-200 flex items-center justify-between px-8 shrink-0">
+                <div>
+                    <h2 class="text-lg font-semibold text-gray-800">Gestor de Entidades (Transporters)</h2>
+                    <p class="text-xs text-gray-500">Administración de Empresas, Flotas y Conductores asociados</p>
+                </div>
+                <button onclick="openModal('modal-empresa')" class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-2 rounded transition shadow">+ Crear Nueva Empresa</button>
+            </header>
+
+            <div id="page-dashboard" class="p-6 flex-1 overflow-auto">
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-50 border-b border-gray-200 text-[10px] uppercase text-slate-500">
+                                <th class="p-4 font-semibold w-24">Fecha Vuelo</th>
+                                <th class="p-4 font-semibold w-40">ID Viaje / Tracto</th>
+                                <th class="p-4 font-semibold">Cliente / Locales</th>
+                                <th class="p-4 font-semibold w-36">Estado</th>
+                                <th class="p-4 font-semibold text-right w-24">Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm">
+                            <tr class="row-vivo border-b border-gray-100 hover:bg-blue-50 cursor-pointer transition" onclick="toggleSlideOver('vivo', 'TRP-001')">
+                                <td class="p-4 text-xs font-bold text-blue-600">HOY<br><span class="text-gray-400 font-normal">07:55 hrs</span></td>
+                                <td class="p-4"><p class="font-bold text-gray-800">TRP-001</p><span class="text-[10px] font-mono bg-gray-100 border border-gray-200 px-1 rounded">KBCW-89</span></td>
+                                <td class="p-4 text-xs"><span class="font-bold text-gray-800">Falabella</span><br>Tienda Costanera</td>
+                                <td class="p-4"><span class="px-2 py-1 bg-blue-100 text-blue-700 rounded text-[10px] font-bold border border-blue-200">EN DESCARGA</span></td>
+                                <td class="p-4 text-right"><button class="text-blue-600 font-bold text-xs bg-blue-50 px-2 py-1 rounded">Gestionar</button></td>
+                            </tr>
+                            <tr class="row-historial hidden border-b border-gray-100 hover:bg-gray-50 cursor-pointer transition opacity-75" onclick="toggleSlideOver('historial', 'TRP-899')">
+                                <td class="p-4 text-xs text-gray-500 font-mono">15-03-2026<br>06:30 hrs</td>
+                                <td class="p-4"><p class="font-bold text-gray-800">TRP-899</p><span class="text-[10px] font-mono bg-gray-100 border border-gray-200 px-1 rounded">LLPM-55</span></td>
+                                <td class="p-4 text-xs"><span class="font-bold text-gray-800">Tottus</span><br>Tottus Nataniel</td>
+                                <td class="p-4"><span class="px-2 py-1 bg-gray-200 text-gray-700 rounded text-[10px] font-bold border border-gray-300">COMPLETADO</span></td>
+                                <td class="p-4 text-right"><button class="text-gray-600 font-medium text-xs underline">Auditar</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="page-transporters" class="hidden p-6 flex-1 overflow-auto space-y-8">
+                
+                <div class="bg-white rounded-xl shadow-md border border-gray-200 p-6">
+                    <div class="flex justify-between items-center border-b border-gray-100 pb-4 mb-6">
+                        <div class="flex items-center">
+                            <div class="w-14 h-14 bg-slate-800 text-white rounded-lg flex items-center justify-center font-bold text-xl mr-4">TS</div>
+                            <div>
+                                <h3 class="font-black text-2xl text-slate-800">Transportes del Sur SpA</h3>
+                                <p class="text-xs text-gray-500 font-medium mt-1">RUT Empresa: <span class="font-mono">76.543.210-K</span> | Objeto: transporters</p>
+                            </div>
+                        </div>
+                        <button class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded text-sm font-medium transition border border-gray-300">Editar Datos Empresa</button>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        
+                        <div class="border border-gray-200 rounded-lg overflow-hidden flex flex-col h-[700px]">
+                            <div class="bg-slate-50 p-4 border-b border-gray-200 flex justify-between items-center">
+                                <div><h4 class="font-bold text-slate-800 text-lg">Conductores Asociados</h4><p class="text-[10px] text-gray-500 uppercase">Entidad: drivers</p></div>
+                                <button onclick="openModal('modal-conductor')" class="text-xs bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded shadow">+ Nuevo Conductor</button>
+                            </div>
+                            
+                            <div class="p-4 overflow-y-auto flex-1 bg-gray-50">
+                                <div class="bg-white border border-gray-200 rounded-lg p-5 shadow-sm">
+                                    <div class="flex items-center justify-between border-b border-gray-100 pb-3 mb-4">
+                                        <div class="flex items-center">
+                                            <div class="w-12 h-12 bg-gray-200 rounded-full bg-cover mr-3" style="background-image: url('https://i.pravatar.cc/150?img=68');"></div>
+                                            <div><p class="font-bold text-gray-800 text-base">Carlos Sepúlveda</p><p class="text-xs text-gray-500">RUT: <span class="font-mono">15.234.567-8</span></p></div>
+                                        </div>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-3 mb-5 text-xs">
+                                        <div class="col-span-2"><span class="text-gray-500 block text-[9px] uppercase font-bold">Dirección</span>Pasaje Los Aromos 123, Santiago</div>
+                                        <div><span class="text-gray-500 block text-[9px] uppercase font-bold">Contacto Emergencia</span>María González</div>
+                                        <div><span class="text-gray-500 block text-[9px] uppercase font-bold">Teléfono Emergencia</span>+56 9 8765 4321</div>
+                                    </div>
+
+                                    <div class="bg-blue-50/50 p-4 rounded-lg border border-blue-100 space-y-4">
+                                        <p class="text-[10px] font-black text-blue-800 uppercase border-b border-blue-200 pb-1">Validación y Evidencia Documental</p>
+                                        <div class="flex flex-col gap-1.5">
+                                            <div class="flex justify-between items-center text-xs"><span class="font-medium text-gray-700">Examen Médico / Psicotécnico</span><input type="date" value="2026-12-01" class="border border-gray-300 rounded px-2 py-1 text-[11px] font-mono text-gray-700 bg-white"></div>
+                                            <input type="file" class="block w-full text-[10px] text-gray-500 file:mr-3 file:py-1 file:px-3 file:rounded file:border-0 file:text-xs file:font-semibold file:bg-blue-100 file:text-blue-700 hover:file:bg-blue-200 cursor-pointer bg-white border border-gray-200 rounded">
+                                        </div>
+                                        <div class="flex flex-col gap-1.5 border-t border-gray-200 pt-3">
+                                            <div class="flex justify-between items-center text-xs"><span class="font-medium text-gray-700">Certificado Antecedentes</span><input type="date" value="2026-08-15" class="border border-gray-300 rounded px-2 py-1 text-[11px] font-mono text-gray-700 bg-white"></div>
+                                            <input type="file" class="block w-full text-[10px] text-gray-500 file:mr-3 file:py-1 file:px-3 file:rounded file:border-0 file:text-xs file:font-semibold file:bg-blue-100 file:text-blue-700 hover:file:bg-blue-200 cursor-pointer bg-white border border-gray-200 rounded">
+                                        </div>
+                                        <div class="flex flex-col gap-1.5 border-t border-red-200 pt-3 bg-red-50/50 -mx-2 px-2 pb-2 rounded">
+                                            <div class="flex justify-between items-center text-xs"><span class="font-bold text-red-700">Inducción de Seguridad</span><input type="date" value="2026-03-10" class="border border-red-300 rounded px-2 py-1 text-[11px] font-mono text-red-700 bg-white"></div>
+                                            <p class="text-[9px] text-red-600 font-bold mb-1">⚠️ Requiere actualizar archivo de respaldo.</p>
+                                            <input type="file" class="block w-full text-[10px] text-red-600 file:mr-3 file:py-1 file:px-3 file:rounded file:border-0 file:text-xs file:font-semibold file:bg-red-100 file:text-red-700 hover:file:bg-red-200 cursor-pointer bg-white border border-red-200 rounded">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border border-gray-200 rounded-lg overflow-hidden flex flex-col h-[700px]">
+                            <div class="bg-slate-50 p-4 border-b border-gray-200 flex justify-between items-center">
+                                <div><h4 class="font-bold text-slate-800 text-lg">Flota Asociada</h4><p class="text-[10px] text-gray-500 uppercase">Entidad: vehicles</p></div>
+                                <button onclick="openModal('modal-vehiculo')" class="text-xs bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded shadow">+ Nuevo Vehículo</button>
+                            </div>
+                            
+                            <div class="p-4 overflow-y-auto flex-1 bg-gray-50">
+                                <div class="bg-white border border-gray-200 rounded-lg p-5 shadow-sm">
+                                    <div class="flex justify-between items-center border-b border-gray-100 pb-4 mb-4">
+                                        <div><span class="text-[10px] text-gray-500 block uppercase font-bold">Patente (Tracto)</span><span class="text-lg font-black bg-yellow-100 border border-yellow-300 px-2 py-0.5 rounded text-gray-800 mt-1 inline-block">KBCW-89</span></div>
+                                        <div class="text-right"><span class="text-[10px] text-gray-500 block uppercase font-bold">Patente (Remolque)</span><span class="text-base font-bold bg-white border border-gray-300 px-2 py-0.5 rounded text-gray-800 mt-1 inline-block">RM-4455</span></div>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-3 mb-5 text-xs">
+                                        <div class="col-span-2"><span class="text-gray-500 block text-[9px] uppercase font-bold">Número de Chasis (VIN)</span><span class="font-mono text-gray-700">9BMMX83B10C123456</span></div>
+                                        <div><span class="text-gray-500 block text-[9px] uppercase font-bold">Capacidad Máxima</span>28,000 kg</div>
+                                        <div><span class="text-gray-500 block text-[9px] uppercase font-bold">Combustible</span>Diesel</div>
+                                    </div>
+
+                                    <div class="bg-slate-50 p-4 rounded-lg border border-gray-200 space-y-4">
+                                        <p class="text-[10px] font-black text-slate-600 uppercase border-b border-gray-200 pb-1">Documentación Legal del Vehículo</p>
+                                        <div class="flex flex-col gap-1.5">
+                                            <div class="flex justify-between items-center text-xs"><span class="font-medium text-gray-700">Póliza de Seguro N°</span><input type="text" value="POL-77382-BCI" class="border border-gray-300 rounded px-2 py-1 text-[11px] font-mono text-gray-700 bg-white w-32"></div>
+                                            <input type="file" class="block w-full text-[10px] text-gray-500 file:mr-3 file:py-1 file:px-3 file:rounded file:border-0 file:text-xs file:font-semibold file:bg-slate-200 file:text-slate-700 hover:file:bg-slate-300 cursor-pointer bg-white border border-gray-200 rounded">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div id="slide-over" class="absolute inset-y-0 right-0 w-[600px] bg-gray-50 shadow-2xl border-l border-gray-300 translate-x-full transition-transform z-40 flex flex-col">
+                <div class="px-6 py-4 border-b border-gray-200 bg-white flex justify-between items-center shrink-0">
+                    <div>
+                        <h3 id="panel-title" class="text-lg font-black text-slate-800">Gestión: TRP-001</h3>
+                        <p id="panel-subtitle" class="text-xs text-green-600 font-bold">Viaje en Curso - Edición Habilitada</p>
+                    </div>
+                    <button onclick="toggleSlideOver()" class="text-gray-400 hover:text-gray-800 text-3xl leading-none">&times;</button>
+                </div>
+                
+                <div class="flex-1 overflow-y-auto p-6 space-y-6 scrollbar-hide">
+                    
+                    <div id="panel-operativo" class="bg-yellow-50 rounded-lg border border-yellow-200 shadow-sm p-5 transition">
+                        <div class="flex items-center justify-between border-b border-yellow-200 pb-2 mb-4">
+                            <h4 class="text-sm font-black text-yellow-800 uppercase tracking-wider">Bitácora Operativa</h4>
+                            <span id="live-indicator" class="flex h-3 w-3"><span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-yellow-400 opacity-75"></span><span class="relative inline-flex rounded-full h-3 w-3 bg-yellow-500"></span></span>
+                        </div>
+                        
+                        <div class="grid grid-cols-3 gap-4 mb-4 bg-white p-3 rounded border border-yellow-100">
+                            <div class="flex flex-col"><span class="text-[10px] text-gray-500 font-bold uppercase mb-2">Conductor Activo</span><label class="flex items-center"><input type="checkbox" class="sr-only toggle-checkbox" checked><div class="block bg-gray-200 w-10 h-6 rounded-full toggle-label"></div><div class="ml-2 text-xs font-bold text-gray-700">Sí</div></label></div>
+                            <div class="flex flex-col"><span class="text-[10px] text-gray-500 font-bold uppercase mb-2">Vehículo Trabajando</span><label class="flex items-center"><input type="checkbox" class="sr-only toggle-checkbox" checked><div class="block bg-gray-200 w-10 h-6 rounded-full toggle-label"></div><div class="ml-2 text-xs font-bold text-gray-700">Sí</div></label></div>
+                            <div class="flex flex-col"><span class="text-[10px] text-gray-500 font-bold uppercase mb-2">Asignado 1ra Vuelta</span><label class="flex items-center"><input type="checkbox" class="sr-only toggle-checkbox" checked><div class="block bg-gray-200 w-10 h-6 rounded-full toggle-label"></div><div class="ml-2 text-xs font-bold text-gray-700">Sí</div></label></div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label class="text-[10px] text-gray-500 font-bold uppercase mb-1 block">Estado / Justificación</label>
+                                <select class="w-full text-sm border border-gray-300 rounded px-2 py-1.5 bg-white"><option selected>EN DESCARGA</option><option>COMPLETADO</option></select>
+                            </div>
+                            <div>
+                                <label class="text-[10px] text-gray-500 font-bold uppercase mb-1 block">Locales Asignados (Tipeo)</label>
+                                <input type="text" value="Tienda Costanera" class="w-full text-sm border border-gray-300 rounded px-2 py-1.5 bg-white">
+                            </div>
+                        </div>
+
+                        <div id="input-novedad" class="mb-3">
+                            <label class="text-[10px] text-gray-500 font-bold uppercase mb-1 block">Agregar Observación</label>
+                            <div class="flex space-x-2"><input type="text" placeholder="Escriba la novedad aquí..." class="w-full text-sm border border-gray-300 rounded px-2 py-1.5 bg-white"><button class="bg-blue-600 text-white text-xs px-4 py-1.5 rounded shadow hover:bg-blue-700">Guardar</button></div>
+                        </div>
+
+                        <div>
+                            <label class="text-[10px] text-gray-500 font-bold uppercase mb-1 block">Historial de Observaciones</label>
+                            <div class="bg-white border border-yellow-100 rounded p-2 h-24 overflow-y-auto text-xs space-y-2 text-gray-600">
+                                <p><span class="font-bold text-gray-500">11:45 hrs:</span> Llegada a local. Esperando andén de descarga asignado.</p>
+                                <p><span class="font-bold text-gray-500">09:15 hrs:</span> Vehículo cargado. Salida desde CD.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg border border-gray-200 shadow-sm p-5">
+                        <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wider mb-4 border-b pb-2">Información Maestra</h4>
+                        <div class="grid grid-cols-2 gap-y-4 gap-x-4 text-sm">
+                            <div><p class="text-[10px] text-gray-500 uppercase font-bold">Cliente</p><p class="font-medium text-gray-800">Falabella</p></div>
+                            <div><p class="text-[10px] text-gray-500 uppercase font-bold">Transportista</p><p class="font-medium text-gray-800">Transportes del Sur</p></div>
+                            <div><p class="text-[10px] text-gray-500 uppercase font-bold">Patente</p><p class="font-medium text-gray-800">KBCW-89</p></div>
+                            <div><p class="text-[10px] text-gray-500 uppercase font-bold">Conductor</p><p class="font-medium text-gray-800">Carlos Sepúlveda</p></div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg border border-gray-200 shadow-sm p-5">
+                        <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wider mb-4 border-b pb-2">Hitos Automáticos (GPS)</h4>
+                        <div class="relative border-l-2 border-slate-200 ml-4 space-y-4 text-sm">
+                            <div class="relative pl-6"><div class="absolute -left-[11px] top-1 w-5 h-5 bg-blue-500 rounded-full border-[3px] border-white"></div><p class="font-bold text-blue-700">Salida desde Origen</p><p class="text-xs text-gray-500">19/03 - 09:15:22</p></div>
+                            <div class="relative pl-6"><div class="absolute -left-[11px] top-1 w-5 h-5 bg-blue-500 rounded-full border-[3px] border-white"></div><p class="font-bold text-blue-700">Llegada a Destino</p><p class="text-xs text-gray-500">19/03 - 11:44:10</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="modal-empresa" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center modal-enter">
+        <div class="bg-white w-[500px] rounded-xl shadow-2xl flex flex-col overflow-hidden">
+            <div class="px-6 py-4 border-b border-gray-200 bg-slate-50 flex justify-between items-center"><h3 class="font-bold text-lg text-slate-800">Crear Nueva Empresa</h3><button onclick="closeModal('modal-empresa')" class="text-gray-400 hover:text-gray-800 text-2xl leading-none">&times;</button></div>
+            <div class="p-6 space-y-4">
+                <div><label class="block text-xs font-bold text-gray-700 mb-1">Razón Social</label><input type="text" placeholder="Ej. Transportes del Norte S.A." class="w-full border border-gray-300 rounded px-3 py-2 text-sm"></div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div><label class="block text-xs font-bold text-gray-700 mb-1">RUT Tractos</label><input type="text" class="w-full border border-gray-300 rounded px-3 py-2 text-sm font-mono"></div>
+                    <div><label class="block text-xs font-bold text-gray-700 mb-1">RUT Remolques</label><input type="text" class="w-full border border-gray-300 rounded px-3 py-2 text-sm font-mono"></div>
+                </div>
+            </div>
+            <div class="px-6 py-4 border-t border-gray-200 bg-gray-50 flex justify-end space-x-3"><button onclick="closeModal('modal-empresa')" class="px-4 py-2 text-sm text-gray-600 font-medium hover:bg-gray-200 rounded">Cancelar</button><button onclick="closeModal('modal-empresa')" class="px-4 py-2 text-sm bg-blue-600 text-white font-medium rounded hover:bg-blue-700 shadow">Guardar Empresa</button></div>
+        </div>
+    </div>
+
+    <div id="modal-conductor" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center modal-enter">
+        <div class="bg-white w-[600px] rounded-xl shadow-2xl flex flex-col overflow-hidden max-h-[90vh]">
+            <div class="px-6 py-4 border-b border-gray-200 bg-slate-50 flex justify-between items-center"><h3 class="font-bold text-lg text-slate-800">Registrar Nuevo Conductor</h3><button onclick="closeModal('modal-conductor')" class="text-gray-400 hover:text-gray-800 text-2xl leading-none">&times;</button></div>
+            <div class="p-6 overflow-y-auto space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="col-span-2"><label class="block text-xs font-bold text-gray-700 mb-1">Nombre Completo</label><input type="text" class="w-full border border-gray-300 rounded px-3 py-2 text-sm"></div>
+                    <div><label class="block text-xs font-bold text-gray-700 mb-1">RUT Conductor</label><input type="text" class="w-full border border-gray-300 rounded px-3 py-2 text-sm font-mono"></div>
+                    <div><label class="block text-xs font-bold text-gray-700 mb-1">Teléfono</label><input type="text" class="w-full border border-gray-300 rounded px-3 py-2 text-sm"></div>
+                </div>
+                <div class="border-t border-gray-200 pt-4 mt-4">
+                    <label class="block text-xs font-bold text-gray-700 mb-2">Adjuntar Documentación Base (PDF/JPG)</label>
+                    <input type="file" multiple class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 border border-gray-300 rounded p-2">
+                </div>
+            </div>
+            <div class="px-6 py-4 border-t border-gray-200 bg-gray-50 flex justify-end space-x-3"><button onclick="closeModal('modal-conductor')" class="px-4 py-2 text-sm text-gray-600 font-medium hover:bg-gray-200 rounded">Cancelar</button><button onclick="closeModal('modal-conductor')" class="px-4 py-2 text-sm bg-blue-600 text-white font-medium rounded hover:bg-blue-700 shadow">Crear Perfil</button></div>
+        </div>
+    </div>
+
+    <div id="modal-vehiculo" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center modal-enter">
+        <div class="bg-white w-[500px] rounded-xl shadow-2xl flex flex-col overflow-hidden">
+            <div class="px-6 py-4 border-b border-gray-200 bg-slate-50 flex justify-between items-center"><h3 class="font-bold text-lg text-slate-800">Registrar Nuevo Vehículo</h3><button onclick="closeModal('modal-vehiculo')" class="text-gray-400 hover:text-gray-800 text-2xl leading-none">&times;</button></div>
+            <div class="p-6 space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div><label class="block text-xs font-bold text-gray-700 mb-1">Patente Tracto</label><input type="text" class="w-full border border-gray-300 rounded px-3 py-2 text-sm font-mono uppercase"></div>
+                    <div><label class="block text-xs font-bold text-gray-700 mb-1">Patente Remolque</label><input type="text" class="w-full border border-gray-300 rounded px-3 py-2 text-sm font-mono uppercase"></div>
+                    <div class="col-span-2"><label class="block text-xs font-bold text-gray-700 mb-1">Número de Chasis (VIN)</label><input type="text" class="w-full border border-gray-300 rounded px-3 py-2 text-sm font-mono uppercase"></div>
+                    <div><label class="block text-xs font-bold text-gray-700 mb-1">Capacidad (Kg)</label><input type="number" class="w-full border border-gray-300 rounded px-3 py-2 text-sm"></div>
+                    <div><label class="block text-xs font-bold text-gray-700 mb-1">Combustible</label><select class="w-full border border-gray-300 rounded px-3 py-2 text-sm bg-white"><option>Diesel</option><option>Eléctrico</option></select></div>
+                </div>
+            </div>
+            <div class="px-6 py-4 border-t border-gray-200 bg-gray-50 flex justify-end space-x-3"><button onclick="closeModal('modal-vehiculo')" class="px-4 py-2 text-sm text-gray-600 font-medium hover:bg-gray-200 rounded">Cancelar</button><button onclick="closeModal('modal-vehiculo')" class="px-4 py-2 text-sm bg-blue-600 text-white font-medium rounded hover:bg-blue-700 shadow">Registrar Flota</button></div>
+        </div>
+    </div>
+
+    <script>
+        function login() { document.getElementById('view-login').classList.add('hidden'); document.getElementById('view-app').classList.remove('hidden'); }
+        function logout() { document.getElementById('view-app').classList.add('hidden'); document.getElementById('view-login').classList.remove('hidden'); if(isSlideOverOpen) toggleSlideOver(); navigate('dashboard'); }
+
+        function navigate(pageId) {
+            document.getElementById('page-dashboard').classList.add('hidden');
+            document.getElementById('page-transporters').classList.add('hidden');
+            document.getElementById('header-dashboard').classList.add('hidden');
+            document.getElementById('header-transporters').classList.add('hidden');
+            
+            document.getElementById('nav-dashboard').className = "w-full text-left px-4 py-2 hover:bg-slate-800 rounded text-sm text-gray-300 transition";
+            document.getElementById('nav-transporters').className = "w-full text-left px-4 py-2 hover:bg-slate-800 rounded text-sm text-gray-300 transition flex justify-between items-center";
+
+            document.getElementById(`page-${pageId}`).classList.remove('hidden');
+            document.getElementById(`header-${pageId}`).classList.remove('hidden');
+            
+            if(pageId === 'dashboard') document.getElementById('nav-dashboard').className = "w-full text-left px-4 py-2 bg-blue-600 rounded text-sm font-medium transition shadow";
+            else document.getElementById('nav-transporters').className = "w-full text-left px-4 py-2 bg-blue-600 rounded text-sm font-medium transition shadow flex justify-between items-center";
+        }
+
+        function switchTab(tab) {
+            const btnVivo = document.getElementById('tab-vivo');
+            const btnHistorial = document.getElementById('tab-historial');
+            const filterBar = document.getElementById('filter-bar');
+            const rowsVivo = document.querySelectorAll('.row-vivo');
+            const rowsHistorial = document.querySelectorAll('.row-historial');
+
+            if (tab === 'vivo') {
+                btnVivo.className = "pb-3 border-b-2 border-blue-600 font-bold text-blue-600 transition";
+                btnHistorial.className = "pb-3 border-b-2 border-transparent font-medium text-gray-500 hover:text-gray-800 transition";
+                filterBar.classList.add('hidden');
+                rowsVivo.forEach(r => r.classList.remove('hidden'));
+                rowsHistorial.forEach(r => r.classList.add('hidden'));
+            } else {
+                btnHistorial.className = "pb-3 border-b-2 border-blue-600 font-bold text-blue-600 transition";
+                btnVivo.className = "pb-3 border-b-2 border-transparent font-medium text-gray-500 hover:text-gray-800 transition";
+                filterBar.classList.remove('hidden');
+                rowsVivo.forEach(r => r.classList.add('hidden')); 
+                rowsHistorial.forEach(r => r.classList.remove('hidden'));
+            }
+        }
+
+        function openModal(modalId) { document.getElementById(modalId).classList.remove('hidden'); }
+        function closeModal(modalId) { document.getElementById(modalId).classList.add('hidden'); }
+
+        let isSlideOverOpen = false;
+        function toggleSlideOver(mode, id = "TRP-001") {
+            const slide = document.getElementById('slide-over');
+            
+            if (!isSlideOverOpen && mode) {
+                const panelOp = document.getElementById('panel-operativo');
+                const title = document.getElementById('panel-title');
+                const subtitle = document.getElementById('panel-subtitle');
+                const inputs = panelOp.querySelectorAll('input, select');
+                const inputNovedad = document.getElementById('input-novedad');
+
+                if (mode === 'historial') {
+                    title.innerText = `Registro Histórico: ${id}`;
+                    subtitle.innerText = "Viaje Finalizado - Auditoría Solo Lectura";
+                    subtitle.className = "text-xs text-gray-500 font-bold";
+                    panelOp.className = "bg-gray-100 rounded-lg border border-gray-200 shadow-sm p-5 transition";
+                    if(document.getElementById('live-indicator')) document.getElementById('live-indicator').classList.add('hidden');
+                    if(inputNovedad) inputNovedad.classList.add('hidden');
+                    inputs.forEach(i => i.disabled = true);
+                } else {
+                    title.innerText = `Gestión: ${id}`;
+                    subtitle.innerText = "Viaje en Curso - Edición Habilitada";
+                    subtitle.className = "text-xs text-green-600 font-bold";
+                    panelOp.className = "bg-yellow-50 rounded-lg border border-yellow-200 shadow-sm p-5 transition";
+                    if(document.getElementById('live-indicator')) document.getElementById('live-indicator').classList.remove('hidden');
+                    if(inputNovedad) inputNovedad.classList.remove('hidden');
+                    inputs.forEach(i => i.disabled = false);
+                }
+            }
+
+            if (isSlideOverOpen) slide.classList.add('translate-x-full');
+            else slide.classList.remove('translate-x-full');
+            isSlideOverOpen = !isSlideOverOpen;
+        }
+    </script>
+</body>
+</html>
